@@ -1,51 +1,60 @@
-// Inheritance: Creating a base class and derived subclasses
+// Polymorphism: Using a common interface with different implementations
 
-class Vehicle {
-    private String brand;
+interface Shape {
+    double area();
+}
 
-    public Vehicle(String brand) {
-        this.brand = brand;
+class Circle implements Shape {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public void start() {
-        System.out.println("Starting the " + brand + " vehicle");
+    public double area() {
+        return Math.PI * radius * radius;
     }
 }
 
-class Car extends Vehicle {
-    public Car(String brand) {
-        super(brand);
+class Rectangle implements Shape {
+    private double width;
+    private double height;
+
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
     }
 
-    @Override
-    public void start() {
-        System.out.println("Starting the " + getBrand() + " car");
+    public double area() {
+        return width * height;
     }
 }
 
-class Motorcycle extends Vehicle {
-    public Motorcycle(String brand) {
-        super(brand);
+class Triangle implements Shape {
+    private double base;
+    private double height;
+
+    public Triangle(double base, double height) {
+        this.base = base;
+        this.height = height;
     }
 
-    @Override
-    public void start() {
-        System.out.println("Starting the " + getBrand() + " motorcycle");
+    public double area() {
+        return 0.5 * base * height;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        Vehicle vehicle = new Vehicle("Generic");
-        Car car = new Car("Toyota");
-        Motorcycle motorcycle = new Motorcycle("Harley-Davidson");
+        Shape[] shapes = {
+            new Circle(5),
+            new Rectangle(4, 6),
+            new Triangle(3, 7)
+        };
 
-        vehicle.start();
-        car.start();
-        motorcycle.start();
+        for (Shape shape : shapes) {
+            System.out.println("Area: " + shape.area());
+        }
     }
 }
+
