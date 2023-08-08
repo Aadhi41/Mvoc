@@ -1,45 +1,51 @@
-// Abstraction: Creating an abstract class with abstract methods
+// Inheritance: Creating a base class and derived subclasses
 
-abstract class Animal {
-    private String name;
+class Vehicle {
+    private String brand;
 
-    public Animal(String name) {
-        this.name = name;
+    public Vehicle(String brand) {
+        this.brand = brand;
     }
 
-    public String getName() {
-        return name;
+    public String getBrand() {
+        return brand;
     }
 
-    public abstract void makeSound();
-}
-
-class Dog extends Animal {
-    public Dog(String name) {
-        super(name);
-    }
-
-    public void makeSound() {
-        System.out.println(getName() + " barks");
+    public void start() {
+        System.out.println("Starting the " + brand + " vehicle");
     }
 }
 
-class Cat extends Animal {
-    public Cat(String name) {
-        super(name);
+class Car extends Vehicle {
+    public Car(String brand) {
+        super(brand);
     }
 
-    public void makeSound() {
-        System.out.println(getName() + " meows");
+    @Override
+    public void start() {
+        System.out.println("Starting the " + getBrand() + " car");
+    }
+}
+
+class Motorcycle extends Vehicle {
+    public Motorcycle(String brand) {
+        super(brand);
+    }
+
+    @Override
+    public void start() {
+        System.out.println("Starting the " + getBrand() + " motorcycle");
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        Animal dog = new Dog("Buddy");
-        Animal cat = new Cat("Whiskers");
+        Vehicle vehicle = new Vehicle("Generic");
+        Car car = new Car("Toyota");
+        Motorcycle motorcycle = new Motorcycle("Harley-Davidson");
 
-        dog.makeSound();
-        cat.makeSound();
+        vehicle.start();
+        car.start();
+        motorcycle.start();
     }
 }
